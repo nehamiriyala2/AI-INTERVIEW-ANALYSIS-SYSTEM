@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>User Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <div class="logo">Interview<span>AI</span></div>
+
+        <nav class="menu">
+            <a href="/dashboard">🏠 Dashboard</a>
+            <a href="/interview">🎤 Practice Interview</a>
+            <a href="/reports">📊 Reports</a>
+            <a class="active" href="/profile">👤 Profile</a>
+            <a href="/settings">⚙️ Settings</a>
+            <a class="logout" href="/logout">🚪 Logout</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN CONTENT -->
+    <!-- MAIN CONTENT -->
+    <main class="content">
+    
+        <!-- PAGE TITLE -->
+        <div class="page-title">
+            <h1>User Profile</h1>
+            <p>Personal Interview Performance Overview</p>
+        </div>
+    
+        <!-- PROFILE CENTER -->
+        <div class="profile-container">
+    
+            <div class="profile-card">
+    
+                <div class="avatar">
+                    {{ name[0] }}
+                </div>
+    
+                <h2 class="name">{{ name }}</h2>
+                <p class="role">AI Interview Candidate</p>
+    
+                <div class="stats">
+                    <div class="stat">
+                        <span>Total Interviews</span>
+                        <strong>{{ total_interviews }}</strong>
+                    </div>
+    
+                    <div class="stat">
+                        <span>Average Score</span>
+                        <strong>{{ avg_score }}</strong>
+                    </div>
+    
+                    <div class="stat highlight">
+                        <span>Skill Level</span>
+                        {% if avg_score >= 75 %}
+                        <strong>Advanced</strong>
+                        {% elif avg_score >= 50 %}
+                        <strong>Intermediate</strong>
+                        {% else %}
+                        <strong>Beginner</strong>
+                        {% endif %}
+                    </div>
+                </div>
+    
+            </div>
+    
+        </div>
+    
+    </main>
+
+</body>
+
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>AI Interview Dashboard</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- 🌗 THEME TOGGLE -->
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar">
+        <div class="brand brand-logo">
+            <img src="{{ url_for('static', filename='images/ai.jpeg') }}" class="brand-icon">
+            <span class="brand-text">Interview<span>AI</span></span>
+        </div>
+
+        <nav class="menu">
+            <a href="/dashboard" class="active">🏠 Dashboard</a>
+            <a href="/interview">🎤 Practice Interview</a>
+            <a href="/reports">📊 Reports</a>
+            <a href="/profile">👤 Profile</a>
+            <a href="/settings">⚙️ Settings</a>
+            <a href="/logout" class="logout">🚪 Logout</a>
+        </nav>
+    </aside>
+
+    <!-- ========== MAIN ========== -->
+    <main class="main">
+
+        <h1 class="title">AI Interview Command Center</h1>
+        <p class="subtitle">Real-time Interview Performance Analytics</p>
+
+        <!-- KPI -->
+        <section class="kpi-grid">
+            <div class="kpi-card">
+                <h3>Total Interviews</h3>
+                <p>{{ total }}</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>Last Score</h3>
+                <p>{{ last_score }}</p>
+            </div>
+
+            <div class="kpi-card">
+                <h3>Average Score</h3>
+                <p>{{ avg_score }}</p>
+            </div>
+
+            <div class="kpi-card highlight">
+                <h3>Completion Rate</h3>
+                <p>{{ completion_rate }}%</p>
+            </div>
+        </section>
+
+    <!-- ================= CHARTS SECTION ================= -->
+    <div class="charts-grid">
+    
+        <!-- AI SCORE TREND -->
+        <div class="chart-card">
+            <h3>📈 AI Score Trend</h3>
+            <canvas id="scoreChart"></canvas>
+        </div>
+    
+        <!-- EMOTION DISTRIBUTION -->
+        <div class="chart-card">
+            <h3>😊 Emotion Distribution</h3>
+            <canvas id="emotionChart"></canvas>
+        </div>
+    
+    </div>
+    </main>
+
+    <!-- ========== JS ========== -->
+    <script>
+        /* ================= THEME ================= */
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+            localStorage.setItem(
+                "theme",
+                document.body.classList.contains("dark") ? "dark" : "light"
+            );
+            document.getElementById("themeBtn").innerText =
+                document.body.classList.contains("dark") ? "☀️" : "🌙";
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+                document.getElementById("themeBtn").innerText = "☀️";
+            }
+        };
+
+        /* ================= DATA FROM BACKEND ================= */
+        const scores = {{ scores | default ([]) | tojson }};
+        const emotions = {{ emotions | default ([]) | tojson }};
+
+        /* ================= NORMALIZE EMOTIONS ================= */
+        function normalizeEmotion(e) {
+            if (!e) return "Neutral";
+            e = e.toLowerCase();
+
+            if (e.includes("confident")) return "Confident";
+            if (e.includes("nervous")) return "Nervous";
+            if (e.includes("calm")) return "Calm";
+            if (e.includes("happy")) return "Happy";
+
+            return "Neutral";
+        }
+
+        const cleanEmotions = emotions.map(e => normalizeEmotion(e));
+
+        /* ================= AI SCORE LINE CHART ================= */
+        if (scores.length > 0) {
+            new Chart(document.getElementById("scoreChart"), {
+                type: "line",
+                data: {
+                    labels: scores.map((_, i) => `Interview ${i + 1}`),
+                    datasets: [{
+                        label: "AI Score",
+                        data: scores,
+                        borderColor: "#22d3ee",
+                        backgroundColor: "rgba(34,211,238,0.25)",
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
+                options: {
+                    plugins: { legend: { display: false } },
+                    scales: { y: { beginAtZero: true, max: 100 } }
+                }
+            });
+        }
+
+        /* ================= EMOTION DISTRIBUTION ================= */
+        const emotionCount = {};
+        cleanEmotions.forEach(e => {
+            emotionCount[e] = (emotionCount[e] || 0) + 1;
+        });
+
+        if (cleanEmotions.length > 0) {
+            new Chart(document.getElementById("emotionChart"), {
+                type: "doughnut",
+                data: {
+                    labels: Object.keys(emotionCount),
+                    datasets: [{
+                        data: Object.values(emotionCount),
+                        backgroundColor: [
+                            "#22c55e", // Confident
+                            "#facc15", // Nervous
+                            "#3b82f6", // Calm
+                            "#22d3ee", // Happy
+                            "#94a3b8"  // Neutral
+                        ]
+                    }]
+                },
+                options: {
+                    cutout: "70%",
+                    plugins: { legend: { position: "bottom" } }
+                }
+            });
+        }
+    </script>
+
+</body>
+
+</html>

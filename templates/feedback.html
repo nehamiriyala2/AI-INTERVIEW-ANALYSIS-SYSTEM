@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Candidate Feedback | InterviewAI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: linear-gradient(135deg, #2563eb, #06b6d4);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .feedback-card {
+            background: white;
+            width: 450px;
+            padding: 35px;
+            border-radius: 16px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        label {
+            font-weight: 500;
+            display: block;
+            margin-bottom: 6px;
+            font-size: 14px;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: none;
+            height: 80px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            border-radius: 8px;
+            border: none;
+            background: #2563eb;
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        button:hover {
+            background: #1d4ed8;
+        }
+
+        .back-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+        }
+
+        .back-link a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="feedback-card">
+
+        <h2>🎯 Candidate Experience Feedback</h2>
+        <p class="subtitle">Help us improve your interview experience</p>
+
+        <form action="/submit_feedback" method="POST">
+
+            <div class="form-group">
+                <label>How easy was the interface?</label>
+                <select name="usability" required>
+                    <option value="1">1 ⭐</option>
+                    <option value="2">2 ⭐⭐</option>
+                    <option value="3">3 ⭐⭐⭐</option>
+                    <option value="4">4 ⭐⭐⭐⭐</option>
+                    <option value="5">5 ⭐⭐⭐⭐⭐</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Were instructions clear?</label>
+                <select name="clarity" required>
+                    <option>Yes</option>
+                    <option>No</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Comfort Level (1-5)</label>
+                <input type="number" name="comfort" min="1" max="5" required>
+            </div>
+
+            <div class="form-group">
+                <label>Did AI feel fair?</label>
+                <select name="fairness" required>
+                    <option>Strongly Disagree</option>
+                    <option>Disagree</option>
+                    <option>Neutral</option>
+                    <option>Agree</option>
+                    <option>Strongly Agree</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Technical Issues?</label>
+                <textarea name="technical"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Would you recommend this? (0-10)</label>
+                <input type="number" name="sentiment" min="0" max="10">
+            </div>
+
+            <button type="submit">Submit Feedback</button>
+
+        </form>
+
+        <div class="back-link">
+            <a href="/dashboard">← Back to Dashboard</a>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

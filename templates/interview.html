@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Practice Interview | InterviewAI</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/interview.css') }}">
+    <style>
+        /* ------- Layout ------- */
+        body {
+            margin: 0;
+            font-family: "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #e0f7fa, #e3f2fd);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            background: linear-gradient(180deg, #0284c7, #06b6d4);
+            padding: 25px 20px;
+            height: 100vh;
+        }
+
+        .sidebar nav a {
+            display: block;
+            padding: 12px 18px;
+            color: #e0f2fe;
+            text-decoration: none;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            transition: 0.3s;
+            font-weight: 500;
+        }
+
+        .sidebar nav a.active {
+            background: #22d3ee;
+            color: #083344;
+        }
+
+        .sidebar nav a:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        main {
+            flex: 1;
+            padding: 40px 60px;
+        }
+
+        /* ------- Top Bar ------- */
+        .top-bar {
+            background: linear-gradient(90deg, #0284c7, #22d3ee);
+            color: white;
+            padding: 18px 28px;
+            font-size: 22px;
+            border-radius: 18px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        /* ------- Tech Selection ------- */
+        .tech-select-box {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            padding: 14px 18px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            margin-bottom: 25px;
+        }
+
+        .tech-select-box label {
+            font-weight: 600;
+            color: #0369a1;
+        }
+
+        .tech-select-box select {
+            flex: 1;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #cbd5e1;
+            background: #f1f5f9;
+            font-weight: 500;
+        }
+
+        .start-interview-btn {
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: white;
+            padding: 12px 20px;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.25s ease;
+        }
+
+        .start-interview-btn:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.5);
+        }
+
+        /* ------- Main Layout ------- */
+        .practice-container {
+            display: flex;
+            gap: 30px;
+            align-items: flex-start;
+        }
+
+        /* ------- Camera ------- */
+        .camera-box {
+            width: 380px;
+            height: 260px;
+            border-radius: 18px;
+            background: #000;
+            border: 4px solid #22d3ee;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .camera-box video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
+        }
+
+        .camera-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            padding: 6px 12px;
+            border-radius: 14px;
+            font-size: 12px;
+        }
+
+        /* ------- Interview Panel ------- */
+        .interview-box {
+            flex: 1;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 18px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        h2 {
+            margin-bottom: 8px;
+            color: #0f172a;
+        }
+
+        .emotion-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 14px;
+            background: #e0f2fe;
+            color: #0369a1;
+            margin-bottom: 12px;
+            font-size: 13px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #cbd5e1;
+            background: #f8fafc;
+            font-size: 15px;
+        }
+
+        .meter {
+            margin-top: 14px;
+        }
+
+        progress {
+            width: 100%;
+            height: 12px;
+            accent-color: #22d3ee;
+        }
+
+        /* ------- Controls ------- */
+        .controls {
+            display: flex;
+            gap: 14px;
+            margin-top: 22px;
+        }
+
+        .controls button {
+            flex: 1;
+            padding: 14px;
+            border-radius: 16px;
+            border: none;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s;
+            color: #fff;
+        }
+
+        .start-btn {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            box-shadow: 0 6px 16px rgba(34, 197, 94, 0.5);
+        }
+
+        .stop-btn {
+            background: linear-gradient(135deg, #facc15, #eab308);
+            color: #78350f;
+            box-shadow: 0 6px 16px rgba(234, 179, 8, 0.5);
+        }
+
+        .finish-btn {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+            box-shadow: 0 6px 16px rgba(239, 68, 68, 0.5);
+        }
+
+        .controls button:hover {
+            transform: translateY(-2px) scale(1.04);
+        }
+
+        @media (max-width: 1000px) {
+            main {
+                margin-left: 0;
+                padding: 20px;
+            }
+
+            .practice-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .camera-box {
+                width: 100%;
+                height: 240px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+        <nav>
+            <a href="/dashboard">🏠 Dashboard</a>
+            <a class="active" href="/interview">🎤 Practice Interview</a>
+            <a href="/reports">📊 Reports</a>
+            <a href="/profile">👤 Profile</a>
+            <a href="/settings">⚙️ Settings</a>
+            <a class="logout" href="/logout">🚪 Logout</a>
+        </nav>
+    </aside>
+
+    <!-- MAIN -->
+    <main>
+        <div class="top-bar">🎤 Practice Interview</div>
+
+        <div class="tech-select-box">
+            <label>Select Technology</label>
+            <select id="techSelect">
+                <option value="general">General</option>
+                <option value="java">Java</option>
+                <option value="python">Python</option>
+            </select>
+            <button class="start-interview-btn" onclick="startInterviewFlow()">Start Interview</button>
+        </div>
+
+        <div class="practice-container">
+            <div class="camera-box">
+                <video id="video" autoplay muted playsinline></video>
+                <div class="camera-label">Live Camera</div>
+            </div>
+
+            <div class="interview-box">
+                <h2 id="questionText">Select technology to begin</h2>
+                <div id="emotionBadge" class="emotion-badge">Neutral 😐</div>
+
+                <textarea id="speechText" readonly placeholder="Your speech will appear here..."></textarea>
+
+                <div class="meter">
+                    <label>🔊 Loudness</label>
+                    <progress id="loudness" max="100" value="0"></progress>
+                </div>
+
+                <div class="meter">
+                    <label>🤖 Score</label>
+                    <progress id="score" max="100" value="0"></progress>
+                    <span id="scoreText">0</span>
+                </div>
+
+                <div class="controls">
+                    <button class="start-btn" onclick="startInterview()">Start</button>
+                    <button class="stop-btn" onclick="stopInterview()">Stop</button>
+                    <button class="finish-btn" onclick="finishAnswer()">Finish</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript Logic (unchanged functionality) -->
+   <script>
+    let questions = [];
+    let qIndex = 0;
+    let finalTranscript = "";
+    let recognition;
+    let mediaStream;
+    let mediaRecorder;
+    let recordedChunks = [];
+    let audioCtx, analyser, raf;
+    let isRunning = false;
+
+   const questionBank = {
+        general: [
+            "Tell me about yourself",
+            "What are your strengths?",
+            "What are your weaknesses?",
+            "How do you handle pressure?",
+            "Where do you see yourself in 5 years?"
+        ],
+        java: [
+            "What is OOP in Java?",
+            "Explain inheritance in Java",
+            "What is JVM?",
+            "What is polymorphism?",
+            "What is abstraction?"
+        ],
+        python: [
+            "What are Python features?",
+            "What is list comprehension?",
+            "What is a decorator?",
+            "What is lambda function?"
+        ]
+    };
+    function startInterviewFlow() {
+        const tech = document.getElementById("techSelect").value;
+        questions = questionBank[tech];
+        qIndex = 0;
+        loadQuestion();
+    }
+
+    function loadQuestion() {
+        document.getElementById("questionText").innerText = questions[qIndex];
+        finalTranscript = "";
+        recordedChunks = [];
+        document.getElementById("speechText").value = "";
+        document.getElementById("score").value = 0;
+        document.getElementById("scoreText").innerText = "0";
+        document.getElementById("emotionBadge").innerText = "Neutral 😐";
+    }
+
+    async function startInterview() {
+        if (isRunning) return;
+        isRunning = true;
+
+        mediaStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        document.getElementById("video").srcObject = mediaStream;
+
+        audioCtx = new AudioContext();
+        analyser = audioCtx.createAnalyser();
+        audioCtx.createMediaStreamSource(mediaStream).connect(analyser);
+
+        recordedChunks = [];
+        mediaRecorder = new MediaRecorder(mediaStream);
+
+        mediaRecorder.ondataavailable = e => {
+            if (e.data.size > 0) recordedChunks.push(e.data);
+        };
+
+        mediaRecorder.start();
+
+        recognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
+        recognition.continuous = true;
+        recognition.lang = "en-US";
+
+        recognition.onresult = e => {
+            finalTranscript = Array.from(e.results)
+                .map(r => r[0].transcript)
+                .join(" ");
+
+            document.getElementById("speechText").value = finalTranscript;
+
+            const words = finalTranscript.trim().split(/\s+/).length;
+            const sc = Math.min(100, words * 2);
+
+            document.getElementById("score").value = sc;
+            document.getElementById("scoreText").innerText = sc;
+
+            document.getElementById("emotionBadge").innerText =
+                sc > 70 ? "Confident 😊" :
+                    sc > 40 ? "Nervous 😬" :
+                        "Neutral 😐";
+        };
+
+        recognition.start();
+        updateLoudness();
+    }
+
+    function updateLoudness() {
+        const data = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(data);
+
+        document.getElementById("loudness").value =
+            Math.min(100, data.reduce((a, b) => a + b, 0) / data.length);
+
+        raf = requestAnimationFrame(updateLoudness);
+    }
+
+    function stopInterview() {
+        isRunning = false;
+        if (recognition) recognition.stop();
+        if (raf) cancelAnimationFrame(raf);
+    }
+
+    function finishAnswer() {
+
+        if (!finalTranscript.trim()) {
+            alert("Please speak before finishing!");
+            return;
+        }
+
+        stopInterview();
+
+        // Attach handler BEFORE stopping
+        mediaRecorder.onstop = async () => {
+
+            const blob = new Blob(recordedChunks, { type: "video/webm" });
+
+            const formData = new FormData();
+            formData.append("video", blob);
+            formData.append("answer", finalTranscript);
+            formData.append("words", finalTranscript.trim().split(/\s+/).length);
+            formData.append(
+                "emotion",
+                document.getElementById("emotionBadge").innerText.split(" ")[0]
+            );
+
+            try {
+                const res = await fetch("/save_result", {
+                    method: "POST",
+                    body: formData
+                });
+
+                if (!res.ok) {
+                    alert("Error saving result");
+                    return;
+                }
+
+                const goNext = confirm(
+                    "Answer saved successfully ✅\n\nOK → Next Question\nCancel → View Result"
+                );
+
+                if (goNext) {
+
+                    qIndex++;
+
+                    if (qIndex < questions.length) {
+                        loadQuestion();
+                    } else {
+                        window.location.href = "/result";
+                    }
+
+                } else {
+                    window.location.href = "/result";
+                }
+
+            } catch (error) {
+                console.error(error);
+                alert("Something went wrong!");
+            }
+        };
+
+        mediaRecorder.stop();
+    }
+</script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>InterviewAI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+    <!-- 🌗 THEME TOGGLE -->
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeBtn">🌙</button>
+
+    <!-- ========== SIDEBAR ========== -->
+    <aside class="sidebar">
+        <div class="brand brand-logo">
+            <img src="{{ url_for('static', filename='images/ai.jpeg') }}" class="brand-icon">
+            <span class="brand-text">Interview<span>AI</span></span>
+        </div>
+
+        <nav class="menu">
+            <a href="/dashboard">🏠 Dashboard</a>
+            <a href="/interview">🎤 Practice Interview</a>
+            <a href="/reports">📊 Reports</a>
+            <a href="/profile">👤 Profile</a>
+            <a href="/settings">⚙️ Settings</a>
+            <a href="/logout" class="logout">🚪 Logout</a>
+        </nav>
+    </aside>
+
+    <!-- ========== MAIN CONTENT ========== -->
+    <main class="main">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ========== THEME SCRIPT ========== -->
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+            const btn = document.getElementById("themeBtn");
+            if (document.body.classList.contains("dark")) {
+                localStorage.setItem("theme", "dark");
+                btn.innerText = "☀️";
+            } else {
+                localStorage.setItem("theme", "light");
+                btn.innerText = "🌙";
+            }
+        }
+
+        window.onload = () => {
+            if (localStorage.getItem("theme") === "dark") {
+                document.body.classList.add("dark");
+                document.getElementById("themeBtn").innerText = "☀️";
+            }
+        };
+    </script>
+
+</body>
+
+</html>

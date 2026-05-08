@@ -1,0 +1,240 @@
+/* ===================== RESET ===================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ===================== ROOT VARIABLES ===================== */
+:root {
+    --bg-light: #f5f7fb;
+    --bg-dark: #020617;
+
+    --card-light: #ffffff;
+    --card-dark: #111827;
+
+    --text-light: #0f172a;
+    --text-dark: #e5e7eb;
+
+    --muted-light: #475569;
+    --muted-dark: #9ca3af;
+
+    --primary: #38bdf8;
+    --primary-hover: #0ea5e9;
+
+    --input-light: #f1f5f9;
+    --input-dark: #1f2937;
+
+    --border-light: #cbd5f5;
+    --border-dark: #334155;
+
+    --error: #ef4444;
+}
+
+/* ===================== BODY ===================== */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--bg-light), #eef2ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.3s ease;
+}
+
+body.dark {
+    background: linear-gradient(135deg, var(--bg-dark), #0f172a);
+}
+
+/* ===================== THEME TOGGLE ===================== */
+.theme-toggle {
+    position: fixed;
+    top: 18px;
+    right: 22px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    color: var(--text-light);
+    z-index: 100;
+}
+
+body.dark .theme-toggle {
+    color: var(--text-dark);
+}
+
+/* ===================== AUTH WRAPPER ===================== */
+.auth-wrapper {
+    width: 900px;
+    max-width: 94%;
+    min-height: 520px;
+    display: flex;
+    border-radius: 22px;
+    overflow: hidden;
+    box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
+}
+
+/* ===================== LEFT BRAND PANEL ===================== */
+.auth-left {
+    flex: 1;
+    background: linear-gradient(135deg, #38bdf8, #2563eb);
+    padding: 50px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.auth-left h1 {
+    font-size: 42px;
+    font-weight: 700;
+}
+
+.auth-left span {
+    color: #fde047;
+}
+
+.auth-left p {
+    margin-top: 14px;
+    font-size: 15px;
+    line-height: 1.6;
+    opacity: 0.95;
+}
+
+/* ===================== RIGHT AUTH CARD ===================== */
+.auth-card {
+    flex: 1;
+    background: var(--card-light);
+    padding: 50px 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--text-light);
+}
+
+body.dark .auth-card {
+    background: var(--card-dark);
+    color: var(--text-dark);
+}
+
+/* ===================== HEADINGS ===================== */
+.auth-card h2 {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.auth-card .sub {
+    font-size: 14px;
+    margin-bottom: 24px;
+    color: var(--muted-light);
+}
+
+body.dark .auth-card .sub {
+    color: var(--muted-dark);
+}
+
+/* ===================== ERROR MESSAGE ===================== */
+.error {
+    background: rgba(239, 68, 68, 0.12);
+    color: var(--error);
+    padding: 10px 14px;
+    border-radius: 10px;
+    font-size: 14px;
+    margin-bottom: 18px;
+}
+
+/* ===================== FORM ===================== */
+.auth-card form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.auth-card input {
+    padding: 14px 16px;
+    font-size: 15px;
+    border-radius: 12px;
+    border: 1.5px solid var(--border-light);
+    background: var(--input-light);
+    color: var(--text-light);
+    transition: all 0.25s ease;
+}
+
+.auth-card input:focus {
+    outline: none;
+    border-color: var(--primary);
+    background: #ffffff;
+}
+
+/* DARK INPUT */
+body.dark .auth-card input {
+    background: var(--input-dark);
+    border-color: var(--border-dark);
+    color: var(--text-dark);
+}
+
+body.dark .auth-card input:focus {
+    background: #020617;
+}
+
+/* ===================== BUTTON ===================== */
+.btn {
+    margin-top: 6px;
+    padding: 14px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 14px;
+    border: none;
+    cursor: pointer;
+    background: var(--primary);
+    color: #020617;
+    transition: all 0.25s ease;
+}
+
+.btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+}
+
+/* ===================== LINKS / SWITCH ===================== */
+.switch {
+    margin-top: 18px;
+    font-size: 14px;
+    color: var(--muted-light);
+}
+
+body.dark .switch {
+    color: var(--muted-dark);
+}
+
+.switch a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.switch a:hover {
+    text-decoration: underline;
+}
+
+/* ===================== RESPONSIVE ===================== */
+@media (max-width: 850px) {
+    .auth-wrapper {
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .auth-left {
+        padding: 36px;
+        text-align: center;
+    }
+
+    .auth-left h1 {
+        font-size: 36px;
+    }
+
+    .auth-card {
+        padding: 40px 30px;
+    }
+}

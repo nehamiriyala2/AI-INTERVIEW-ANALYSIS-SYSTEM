@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Account | InterviewAI</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/auth.css') }}">
+</head>
+
+<body>
+
+    <!-- 🌗 Theme Toggle -->
+    <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+
+    <div class="auth-wrapper">
+
+        <!-- LEFT PANEL -->
+        <div class="auth-left">
+            <h1>Interview<span>AI</span></h1>
+            <p>
+                Start your AI interview journey.<br>
+                Build confidence & crack interviews.
+            </p>
+        </div>
+
+        <!-- RIGHT CARD -->
+        <div class="auth-card">
+            <h2>Create Account</h2>
+            <p class="sub">Join InterviewAI 🚀</p>
+
+            {% if error %}
+            <div class="error">{{ error }}</div>
+            {% endif %}
+
+            <form method="POST">
+                <input type="text" name="name" placeholder="Full Name" required>
+                <input type="email" name="email" placeholder="Email address" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <input type="password" name="confirm_password" placeholder="Confirm Password" required>
+
+                <button class="btn" type="submit">Register</button>
+            </form>
+
+            <p class="switch">
+                Already have an account?
+                <a href="{{ url_for('login') }}">Login</a>
+            </p>
+        </div>
+
+    </div>
+
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle("dark");
+        }
+    </script>
+
+</body>
+
+</html>

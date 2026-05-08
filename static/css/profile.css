@@ -1,0 +1,167 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", sans-serif;
+}
+
+/* ===== LAYOUT ===== */
+body {
+    display: flex;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 260px;
+    background: linear-gradient(180deg, #0284c7, #0ea5e9);
+    padding: 30px 20px;
+    color: white;
+}
+
+.logo {
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 40px;
+}
+
+.logo span {
+    color: #dbeafe;
+}
+
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.menu a {
+    text-decoration: none;
+    color: white;
+    padding: 14px 18px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    transition: 0.3s;
+}
+
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.menu a.active {
+    background: white;
+    color: #0284c7;
+    font-weight: 600;
+}
+
+.menu a.logout {
+    margin-top: 30px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+/* ===== MAIN CONTENT ===== */
+.content {
+    flex: 1;
+    padding: 40px 60px;
+}
+
+/* ===== PAGE TITLE CENTER ===== */
+.page-title {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.page-title h1 {
+    font-size: 36px;
+    color: #0f172a;
+}
+
+.page-title p {
+    margin-top: 8px;
+    color: #475569;
+    font-size: 15px;
+}
+
+/* ===== PROFILE CENTER ===== */
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== PROFILE CARD (BIGGER) ===== */
+.profile-card {
+    width: 520px;
+    background: white;
+    border-radius: 26px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.12);
+}
+
+/* ===== AVATAR ===== */
+.avatar {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+    color: white;
+    font-size: 42px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 18px;
+}
+
+/* ===== NAME ===== */
+.name {
+    font-size: 26px;
+    color: #0f172a;
+}
+
+.role {
+    margin-top: 6px;
+    color: #64748b;
+    font-size: 14px;
+}
+
+/* ===== STATS ===== */
+.stats {
+    margin-top: 35px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+}
+
+.stat {
+    background: #f1f5f9;
+    padding: 20px;
+    border-radius: 18px;
+}
+
+.stat span {
+    font-size: 13px;
+    color: #64748b;
+}
+
+.stat strong {
+    display: block;
+    margin-top: 8px;
+    font-size: 22px;
+    color: #0f172a;
+}
+
+/* ===== HIGHLIGHT ===== */
+.stat.highlight {
+    background: linear-gradient(135deg, #22d3ee, #0ea5e9);
+}
+
+.stat.highlight span,
+.stat.highlight strong {
+    color: white;
+}

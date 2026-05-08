@@ -1,0 +1,161 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Poppins, Arial, sans-serif;
+}
+
+/* LAYOUT */
+body {
+    background: linear-gradient(135deg, #e0f2fe, #f8fafc);
+    min-height: 100vh;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* SIDEBAR */
+.sidebar {
+    width: 240px;
+    background: linear-gradient(180deg, #0ea5e9, #06b6d4);
+    padding: 20px;
+    color: white;
+}
+
+.logo {
+    font-size: 24px;
+    margin-bottom: 30px;
+}
+
+.logo span {
+    color: #020617;
+}
+
+.sidebar nav a {
+    display: block;
+    padding: 12px;
+    margin-bottom: 10px;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.sidebar nav a:hover,
+.sidebar nav a.active {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* MAIN */
+.main-content {
+    flex: 1;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* HEADER */
+.page-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.page-header h1 {
+    font-size: 32px;
+}
+
+.page-header p {
+    color: #475569;
+}
+
+/* CARD */
+.settings-card {
+    width: 100%;
+    max-width: 520px;
+    background: white;
+    padding: 30px;
+    border-radius: 18px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.12);
+}
+
+/* SECTION */
+.section {
+    margin-bottom: 22px;
+}
+
+.section h3 {
+    color: #0ea5e9;
+    margin-bottom: 10px;
+}
+
+label {
+    display: block;
+    margin-bottom: 6px;
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #cbd5e1;
+}
+
+/* DIFFICULTY */
+.difficulty {
+    display: flex;
+    gap: 12px;
+}
+
+.difficulty label {
+    flex: 1;
+    border: 2px solid #cbd5e1;
+    padding: 14px;
+    text-align: center;
+    border-radius: 12px;
+    cursor: pointer;
+}
+
+.difficulty input {
+    display: none;
+}
+
+.difficulty span {
+    font-weight: 600;
+}
+
+.difficulty label:hover {
+    border-color: #0ea5e9;
+}
+
+.difficulty input:checked+span {
+    color: #0ea5e9;
+}
+
+/* DEVICE */
+ul {
+    list-style: none;
+    color: #334155;
+}
+
+ul li {
+    margin-bottom: 6px;
+}
+
+/* BUTTON */
+.save-btn {
+    width: 100%;
+    margin-top: 20px;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #22d3ee, #38bdf8);
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.save-btn:hover {
+    transform: scale(1.03);
+}

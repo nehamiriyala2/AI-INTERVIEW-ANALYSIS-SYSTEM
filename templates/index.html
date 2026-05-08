@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>AI Interview Analysis System</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #0f2027, #2c5364);
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            padding: 60px 80px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            color: white;
+            width: 500px;
+            transition: 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 14px;
+            opacity: 0.8;
+            margin-bottom: 40px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: 0.3s ease;
+            color: white;
+        }
+
+        .admin {
+            background: linear-gradient(45deg, #ff416c, #ff4b2b);
+        }
+
+        .user {
+            background: linear-gradient(45deg, #1e90ff, #00c6ff);
+        }
+
+        .btn:hover {
+            transform: scale(1.08);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        footer {
+            position: absolute;
+            bottom: 20px;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="card">
+        <h1>AI Interview Analysis System</h1>
+        <div class="subtitle">
+            Smart Automated Interview Evaluation Platform
+        </div>
+
+        <div class="buttons">
+            <a href="/admin/login" class="btn admin">Admin Login</a>
+            <a href="/login" class="btn user">User Login</a>
+        </div>
+    </div>
+
+    <footer>
+        © 2026 AI Interview System
+    </footer>
+
+</body>
+
+</html>

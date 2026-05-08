@@ -1,0 +1,209 @@
+/* ===== RESET ===== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", "Segoe UI", sans-serif;
+}
+
+/* ===== PAGE BACKGROUND ===== */
+body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #e0f2fe, #fdfcff);
+    display: flex;
+}
+
+/* ===== SIDEBAR (match your new style) ===== */
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 260px;
+    min-height: 100vh;
+    background: linear-gradient(180deg, #0284c7, #0ea5e9);
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+/* LOGO */
+.logo {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-align: left;
+}
+
+.logo span {
+    color: #dbeafe;
+}
+
+/* MENU */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    /* 👈 IMPORTANT SPACING */
+}
+
+/* MENU ITEMS */
+.menu a {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    /* icon + text spacing */
+    padding: 12px 16px;
+    border-radius: 12px;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.25s ease;
+}
+
+/* ICON SIZE */
+.menu a span {
+    font-size: 18px;
+}
+
+/* HOVER */
+.menu a:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* ACTIVE */
+.menu a.active {
+    background: #ffffff;
+    color: #0284c7;
+    font-weight: 600;
+}
+
+/* LOGOUT SPECIAL */
+.menu a.logout {
+    margin-top: 30px;
+    background: rgba(0, 0, 0, 0.15);
+}
+
+.menu a.logout:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* ===== MAIN CONTENT ===== */
+.main {
+    flex: 1;
+    padding: 50px;
+}
+
+/* ===== PAGE TITLE ===== */
+.page-title {
+    margin-bottom: 30px;
+}
+
+.page-title h1 {
+    font-size: 34px;
+    font-weight: 700;
+    color: #0f172a;
+}
+
+.page-title p {
+    color: #475569;
+    margin-top: 6px;
+}
+
+/* ===== REPORT CARD ===== */
+.report-card {
+    background: #ffffff;
+    border-radius: 22px;
+    padding: 30px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== TABLE ===== */
+table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0 14px;
+}
+
+/* HEADER */
+thead th {
+    text-align: left;
+    font-size: 14px;
+    font-weight: 600;
+    color: #2563eb;
+    padding: 12px 16px;
+}
+
+/* ROW */
+tbody tr {
+    background: #f8fafc;
+    border-radius: 14px;
+    transition: all 0.25s ease;
+}
+
+tbody tr:hover {
+    background: #eef6ff;
+    transform: scale(1.01);
+}
+
+/* CELL */
+tbody td {
+    padding: 14px 16px;
+    font-size: 14px;
+    color: #0f172a;
+}
+
+/* ROUND ROW */
+tbody tr td:first-child {
+    border-radius: 14px 0 0 14px;
+}
+
+tbody tr td:last-child {
+    border-radius: 0 14px 14px 0;
+}
+
+/* ===== EMOTION BADGE ===== */
+.badge {
+    padding: 6px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-block;
+}
+
+.badge.neutral {
+    background: #e0f2fe;
+    color: #0284c7;
+}
+
+.badge.happy {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.badge.sad {
+    background: #fee2e2;
+    color: #b91c1c;
+}
+
+/* ===== STATUS TAG ===== */
+.status {
+    padding: 6px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.status.ready {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.status.improve {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.status.poor {
+    background: #fee2e2;
+    color: #b91c1c;
+}

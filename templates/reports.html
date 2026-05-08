@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Interview Reports</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: #f4f6f9;
+        }
+
+        .layout {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 230px;
+            background: linear-gradient(180deg, #0f62fe, #0043ce);
+            color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar h2 {
+            margin-bottom: 30px;
+            font-size: 22px;
+        }
+
+        .sidebar a {
+            display: block;
+            color: #fff;
+            text-decoration: none;
+            margin: 15px 0;
+            padding: 10px;
+            border-radius: 6px;
+        }
+
+        .sidebar a:hover,
+        .sidebar a.active {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .content {
+            flex: 1;
+            padding: 30px;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        th,
+        td {
+            padding: 14px 12px;
+            text-align: center;
+        }
+
+        th {
+            background: #0f62fe;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        tr:hover {
+            background: #eef3ff;
+        }
+
+        .badge {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .ready {
+            background: #e6fff1;
+            color: #0a7a3c;
+        }
+
+        .improve {
+            background: #fff6e5;
+            color: #9a6b00;
+        }
+
+        .practice {
+            background: #ffecec;
+            color: #b00020;
+        }
+
+        .empty {
+            margin-top: 80px;
+            text-align: center;
+            font-size: 18px;
+            color: gray;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="layout">
+
+        <!-- SIDEBAR -->
+        <div class="sidebar">
+            <h2>InterviewAI</h2>
+            <a href="/dashboard">🏠 Dashboard</a>
+            <a href="/interview">🎤 Practice Interview</a>
+            <a href="/reports" class="active">📊 Reports</a>
+            <a href="/profile">👤 Profile</a>
+            <a href="/settings">⚙️ Settings</a>
+            <a href="/logout">🚪 Logout</a>
+        </div>
+
+        <!-- CONTENT -->
+        <div class="content">
+            <h1>📊 Interview Reports</h1>
+
+            {% if rows|length > 0 %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Date & Time</th>
+                        <th>Score</th>
+                        <th>Confidence</th>
+                        <th>Emotion</th>
+                        <th>Words</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for r in rows %}
+                    <tr>
+                        <td>{{ loop.index }}</td>
+                        <td>{{ r.time }}</td>
+                        <td>{{ r.score }}</td>
+                        <td>{{ r.confidence }}</td>
+                        <td>{{ r.emotion }}</td>
+                        <td>{{ r.words }}</td>
+                        <td>
+                            {% if r.score >= 70 %}
+                            <span class="badge ready">Ready</span>
+                            {% elif r.score >= 50 %}
+                            <span class="badge improve">Improve</span>
+                            {% else %}
+                            <span class="badge practice">Needs Practice</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+            <div class="empty">❌ No interview reports found</div>
+            {% endif %}
+        </div>
+
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Settings</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/settings.css') }}">
+</head>
+
+<body>
+
+    <div class="app">
+
+        <!-- SIDEBAR -->
+        <aside class="sidebar">
+            <h2 class="logo">Interview<span>AI</span></h2>
+            <nav>
+                <a href="/dashboard">🏠 Dashboard</a>
+                <a href="/interview">🎤 Practice Interview</a>
+                <a href="/reports">📊 Reports</a>
+                <a href="/profile">👤 Profile</a>
+                <a class="active" href="/settings">⚙️ Settings</a>
+                <a href="/change_password">🔐 Change Password</a>
+                <a href="/logout">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <!-- MAIN CONTENT -->
+        <main class="main-content">
+
+            <div class="page-header">
+                <h1>Settings</h1>
+                <p>Customize your AI Interview Experience</p>
+            </div>
+
+            <div class="settings-card">
+
+                <!-- ================= THEME SECTION ================= -->
+                <div class="section">
+                    <h3>🌗 Theme</h3>
+
+                    <label for="themeSelect">Select Theme</label>
+                    <select id="themeSelect" onchange="changeTheme(this.value)">
+                        <option value="light">Light Mode</option>
+                        <option value="dark">Dark Mode</option>
+                    </select>
+                </div>
+
+                <!-- ================= DIFFICULTY ================= -->
+                <div class="section">
+                    <h3>🎯 Interview Difficulty</h3>
+
+                    <div class="difficulty">
+                        <label>
+                            <input type="radio" name="level" checked>
+                            <span>Beginner</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="level">
+                            <span>Intermediate</span>
+                        </label>
+
+                        <label>
+                            <input type="radio" name="level">
+                            <span>Advanced</span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- ================= DEVICE ================= -->
+                <div class="section">
+                    <h3>💻 Device Information</h3>
+                    <ul>
+                        <li><b>Camera:</b> Webcam Enabled</li>
+                        <li><b>Microphone:</b> Enabled</li>
+                        <li><b>Browser:</b> Chrome / Edge</li>
+                        <li><b>Speech Recognition:</b> Active</li>
+                    </ul>
+                </div>
+
+                <button class="save-btn">💾 Save Settings</button>
+
+            </div>
+
+        </main>
+
+    </div>
+
+    <!-- ================= THEME SCRIPT ================= -->
+    <script>
+        function changeTheme(theme) {
+            if (theme === "dark") {
+                document.body.classList.add("dark");
+                localStorage.setItem("theme", "dark");
+            } else {
+                document.body.classList.remove("dark");
+                localStorage.setItem("theme", "light");
+            }
+        }
+
+        /* Load theme when page opens */
+        window.addEventListener("load", () => {
+            const savedTheme = localStorage.getItem("theme") || "light";
+            document.getElementById("themeSelect").value = savedTheme;
+
+            if (savedTheme === "dark") {
+                document.body.classList.add("dark");
+            }
+        });
+    </script>
+
+</body>
+
+</html>
